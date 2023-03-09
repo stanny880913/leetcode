@@ -1,0 +1,6 @@
+easy/*
+hard/*
+medium/*
+!easy/*.cpp
+!medium/*.cpp
+!hard/*.cpp
