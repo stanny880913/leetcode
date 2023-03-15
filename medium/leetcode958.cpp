@@ -2,7 +2,6 @@
 #include <vector>
 #include <queue>
 
-
 using namespace std;
 
 struct TreeNode
@@ -15,6 +14,18 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+TreeNode *buildTree(vector<int> &arr, int index)
+{
+    TreeNode *root = nullptr;
+    if (index < arr.size() && arr[index] != NULL)
+    {
+        root = new TreeNode(arr[index]);
+        root->left = buildTree(arr, 2 * index + 1);
+        root->right = buildTree(arr, 2 * index + 2);
+    }
+    return root;
+}
+
 bool isCompleteTree(TreeNode *root)
 {
     if (root == NULL)
@@ -22,14 +33,14 @@ bool isCompleteTree(TreeNode *root)
         return true;
     }
 
-    queue<TreeNode *> q; // 用於儲存node的queue，非int
+    queue<TreeNode *> bfs_q; // 用於儲存node的queue，非int
     bool is_null = false;
-    q.push(root);
+    bfs_q.push(root);
 
-    while (!q.empty())
+    while (!bfs_q.empty())
     {
-        TreeNode *cur_node = q.front();
-        q.pop();
+        TreeNode *cur_node = bfs_q.front();
+        bfs_q.pop();
 
         if (cur_node == NULL)
         {
@@ -42,21 +53,24 @@ bool isCompleteTree(TreeNode *root)
             return false;
         }
 
-        q.push(cur_node->left);
-        q.push(cur_node->right);
+        bfs_q.push(cur_node->left);
+        bfs_q.push(cur_node->right);
     }
     return true;
 }
 
 int main()
 {
-    TreeNode *root = new TreeNode(1);
-    root->right = new TreeNode(3);
-    root->left = new TreeNode(2);
-    root->left->right = new TreeNode(5);
-    root->left->left = new TreeNode(4);
+    // TreeNode *root = new TreeNode(1);
+    // root->right = new TreeNode(3);
+    // root->left = new TreeNode(2);
+    // root->left->right = new TreeNode(5);
+    // root->left->left = new TreeNode(4);
     // root->right->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
+    // root->right->right = new TreeNode(7);
 
-    isCompleteTree(root);
+    vector<int> tree_arr = {1,2,3,4,5,NULL,7};
+    int index = 0;
+    isCompleteTree(buildTree(tree_arr,index));
+    return 0;
 }
