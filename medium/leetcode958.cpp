@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include "/home/stannyho/Documents/c++WorkSpace/leetcode/header/TreeNode.h"
+#include "header/TreeNode.h"
 
 using namespace std;
 
