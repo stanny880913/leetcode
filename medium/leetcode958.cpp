@@ -42,7 +42,7 @@ int main()
 {
     vector<int> tree_arr = {1, 2, 3, 4, 5, NULL, 7};
     int index = 0;
-    // buildTree(tree_arr, 0);
+    buildTree(tree_arr, 0);
     isCompleteTree(buildTree(tree_arr, 0));
     return 0;
 }
