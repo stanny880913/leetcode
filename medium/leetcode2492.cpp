@@ -5,34 +5,34 @@
 
 using namespace std;
 
-static bool sortcol(const vector<int> &v1, const vector<int> &v2)
+int find(int i, vector<int> &map)
 {
-    return v1[0] < v2[0];
+    if (i != map[i])
+        map[i] = find(map[i], map);
+    return map[i];
 }
-
+int smallest(int x, int y, int z)
+{
+    return x < y ? (x < z ? x : z) : (y < z ? y : z);
+}
 int minScore(int n, vector<vector<int>> &roads)
-{   
-    int road_size = roads.size();
-    for(int i=0;i<roads.size();i++){
-        sort(roads[i][0],roads[i][1]);
-    }
-    sort(roads.begin(), roads.end(), sortcol);
+{
+    vector<int> map(n + 1), minDistance(n + 1);
 
-    int min = INT16_MAX;
-    
-
-    set<int> val;
-    val.insert(roads[0][0]);
-
-    for (int i = 0; i < road_size; i++)
+    // initialize
+    for (int i = 1; i <= n; i++)
     {
-        if (val.find(roads[i][0]) != val.end())
-        {
-            val.insert(roads[i][1]);
-            min = roads[i][2]<min?roads[i][2]:min;
-        }
+        map[i] = i;
+        minDistance[i] = INT16_MAX;
     }
-    return min;
+    for (int i = 0; i < roads.size(); i++)
+    {
+        int root_a = find(roads[i][0], map), root_b = find(roads[i][1], map);
+        int minPath = smallest(minDistance[root_a], minDistance[root_b], roads[i][2]);
+        root_a > root_b ? map[root_a] = root_b : map[root_b] = root_a;
+        minDistance[root_a] = minDistance[root_b] = minPath;
+    }
+    return minDistance[find(n, map)];
 }
 
 int main()
