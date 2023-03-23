@@ -1,17 +1,15 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <set>
 
 using namespace std;
 
-int find(int i, vector<int> &root)
+int find(int i, vector<int> &parent)
 {
-    if (root[i] != i)
+    if (parent[i] != i)
     {
-        root[i] = find(root[i], root);
+        parent[i] = find(parent[i], parent);
     }
-    return root[i];
+    return parent[i];
 }
 
 int makeConnected(int n, vector<vector<int>> &connections)
@@ -22,19 +20,19 @@ int makeConnected(int n, vector<vector<int>> &connections)
     }
     int group_num = n;
     int con_size = connections.size();
-    vector<int> root(n);
+    vector<int> parent(n);
 
     for (int i = 0; i < n; i++)
     {
-        root[i] = i;
+        parent[i] = i;
     }
 
     for (int i = 0; i < con_size; i++)
     {
-        int root_a = find(connections[i][0],root), root_b = find(connections[i][1],root);
-        if(root_a != root_b){
+        int parent_a = find(connections[i][0],parent), parent_b = find(connections[i][1],parent);
+        if(parent_a != parent_b){
             group_num--;
-            root[root_a]=root_b;
+            parent[parent_a]=parent_b;
         }
     }
     return group_num-1;
