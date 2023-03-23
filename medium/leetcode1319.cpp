@@ -32,7 +32,7 @@ int makeConnected(int n, vector<vector<int>> &connections)
         int parent_a = find(connections[i][0],parent), parent_b = find(connections[i][1],parent);
         if(parent_a != parent_b){
             group_num--;
-            parent[parent_a]=parent_b;
+            parent[parent_b]=parent_a;
         }
     }
     return group_num-1;
