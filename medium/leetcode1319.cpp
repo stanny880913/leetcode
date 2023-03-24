@@ -29,13 +29,14 @@ int makeConnected(int n, vector<vector<int>> &connections)
 
     for (int i = 0; i < con_size; i++)
     {
-        int parent_a = find(connections[i][0],parent), parent_b = find(connections[i][1],parent);
-        if(parent_a != parent_b){
+        int parent_a = find(connections[i][0], parent), parent_b = find(connections[i][1], parent);
+        if (parent_a != parent_b)
+        {
             group_num--;
-            parent[parent_b]=parent_a;
+            parent[parent_a] = parent_b;
         }
     }
-    return group_num-1;
+    return group_num - 1;
 }
 
 int main()
