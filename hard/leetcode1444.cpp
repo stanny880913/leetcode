@@ -3,42 +3,44 @@
 
 using namespace std;
 
-int ways(vector<string> &pizza, int k)
-{
-    const int mod = 1000000000 + 7; // define a constant for modulo arithmetic
-    int rows = pizza.size();        // get the number of rows in the pizza
-    int cols = pizza[0].size();     // get the number of columns in the pizza
-    int dp[55][55][11] = {};        // initialize a 3D array to store the number of ways to cut the pizza
-    int cnt[55][55] = {};           // initialize a 2D array to store the number of 'A' toppings in each sub-rectangle
-
-    // calculate the number of 'A' toppings in each sub-rectangle of the pizza
-    for (int i = 1; i <= rows; i++)
-        for (int j = 1; j <= cols; j++)
-        {
-            cnt[i][j] = cnt[i - 1][j] + cnt[i][j - 1] - cnt[i - 1][j - 1] + (pizza[rows - i][cols - j] == 'A' ? 1 : 0);
-        }
-
-    // initialize the dp array for the base case of cutting the pizza into 0 pieces
-    for (int i = 0; i <= rows; i++)
-        dp[i][0][0] = 1;
-
-    // iterate over the dp array and update it based on the number of 'A' toppings in each sub-rectangle
-    for (int i = 0; i <= rows; i++)
-        for (int j = 0; j <= cols; j++)
-            for (int p = 0; p < k; p++)
-                if (dp[i][j][p])
-                {
-                    // iterate over the rows and update the dp array
-                    for (int ii = i + 1; ii <= rows; ii++)
-                        if (cnt[ii][j] - cnt[i][j] > 0)
-                            dp[ii][j][p + 1] = (dp[ii][j][p + 1] + dp[i][j][p]) % mod;
-                    // iterate over the columns and update the dp array
-                    for (int jj = j + 1; jj <= cols; jj++)
-                        if (cnt[i][jj] - cnt[i][j] > 0)
-                            dp[i][jj][p + 1] = (dp[i][jj][p + 1] + dp[i][j][p]) % mod;
-                }
-    return dp[rows][cols][k]; // return the number of ways to cut the entire pizza into k pieces
-}
+ int ways(vector<string>& pizza, int k) {
+        int m = pizza.size(), n = pizza[0].size();
+        // dp[k][r][c] represents the number of ways to cut the remaining pizza into k pieces
+        // starting from row r and column c
+        vector<vector<vector<int>>> dp(k, vector<vector<int>>(m, vector<int>(n, -1)));
+        // preSum[r][c] is the total number of apples in pizza[r:][c:]
+        vector<vector<int>> preSum(m+1, vector<int>(n+1, 0));
+        // Compute preSum using dynamic programming, starting from the bottom-right corner of the pizza
+        for (int r = m - 1; r >= 0; r--)
+            for (int c = n - 1; c >= 0; c--)
+                preSum[r][c] = preSum[r][c+1] + preSum[r+1][c] - preSum[r+1][c+1] + (pizza[r][c] == 'A' ? 1 : 0);
+        // Start the recursive function dfs with initial parameters
+        // m = number of rows, n = number of columns, k = number of pieces we need to cut the pizza into,
+        // r = row index where we start cutting, c = column index where we start cutting
+        return dfs(m, n, k-1, 0, 0, dp, preSum);
+    }
+    
+    // Recursive function to compute the number of ways to cut the remaining pizza into k pieces
+    int dfs(int m, int n, int k, int r, int c, vector<vector<vector<int>>>& dp, vector<vector<int>>& preSum) {
+        // If the remaining piece has no apple, then it is an invalid cut and we return 0
+        if (preSum[r][c] == 0) return 0;
+        // If we have found a valid way to cut the pizza into k pieces, then we return 1
+        if (k == 0) return 1;
+        // If the dp array already contains the number of ways to cut the remaining pizza into k pieces
+        // starting from row r and column c, then we return the value from the dp array
+        if (dp[k][r][c] != -1) return dp[k][r][c];
+        int ans = 0;
+        // Cut the pizza horizontally at position nr if the upper piece contains at least one apple
+        for (int nr = r + 1; nr < m; nr++) 
+            if (preSum[r][c] - preSum[nr][c] > 0) 
+                ans = (ans + dfs(m, n, k - 1, nr, c, dp, preSum)) % 1000000007;
+        // Cut the pizza vertically at position nc if the left piece contains at least one apple
+        for (int nc = c + 1; nc < n; nc++) 
+            if (preSum[r][c] - preSum[r][nc] > 0)
+                ans = (ans + dfs(m, n, k - 1, r, nc, dp, preSum)) % 1000000007;
+        // Memoize the result in the dp array and return the result
+        return dp[k][r][c] = ans;
+    }
 
 int main()
 {
