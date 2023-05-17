@@ -3,5 +3,4 @@ hard/*
 medium/*
 !easy/*.cpp
 !medium/*.cpp
-!medium/header/*.h
 !hard/*.cpp
