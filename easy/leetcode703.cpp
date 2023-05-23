@@ -14,7 +14,6 @@ public:
         for (auto num : nums)
             pq.push(num);
     }
-
     int add(int val)
     {
         pq.push(val);
