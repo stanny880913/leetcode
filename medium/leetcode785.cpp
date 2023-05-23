@@ -30,7 +30,7 @@ bool isBipartite(vector<vector<int>> &graph)
                     visited[v] = visited[cur] + 1;
                     q.push(v);
                 }
-                else if(visited[v] == visited[cur])
+                else if (visited[v] == visited[cur])
                 {
                     return false;
                 }
