@@ -5,7 +5,7 @@
 
 using namespace std;
 
-bool sortByVal(const pair<int, string> &a, const pair<int, string> &b)
+bool sortByVal(const pair<int, int> &a, const pair<int, int> &b)
 {
     return a.second > b.second;
 }
