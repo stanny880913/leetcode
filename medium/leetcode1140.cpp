@@ -1,6 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,7 +32,7 @@ int stoneGameII(vector<int> &piles)
 
 int main()
 {
-    vector<int> piles = {2, 7, 9, 4, 4};
+    vector<int> piles= {2,7,9,4,4};
     stoneGameII(piles);
     return 0;
 }
