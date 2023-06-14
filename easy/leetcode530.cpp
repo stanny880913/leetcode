@@ -33,14 +33,13 @@ int getMinimumDifference(TreeNode *root)
 {
     vector<int> val;
     // dfs(root, val);
+    // sort(val.begin(), val.end());
     inorder(root, val);
-    sort(val.begin(), val.end());
+    
     int ans = INT32_MAX;
 
     for (int i = 1; i < val.size(); i++)
-    {
         ans = min(ans, val[i] - val[i - 1]);
-    }
 
     return ans;
 }
