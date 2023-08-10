@@ -7,3 +7,4 @@ medium/*
 !hard/*.cpp
 !medium/header/*.h
 !hard/header/*.h
+.DS_Store
