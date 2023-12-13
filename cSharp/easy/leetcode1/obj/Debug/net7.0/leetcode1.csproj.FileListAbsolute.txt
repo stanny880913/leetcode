@@ -1,0 +1,15 @@
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.csproj.AssemblyReference.cache
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.AssemblyInfoInputs.cache
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.AssemblyInfo.cs
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.csproj.CoreCompileInputs.cache
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/bin/Debug/net7.0/leetcode1
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/bin/Debug/net7.0/leetcode1.deps.json
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/bin/Debug/net7.0/leetcode1.runtimeconfig.json
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/bin/Debug/net7.0/leetcode1.dll
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/bin/Debug/net7.0/leetcode1.pdb
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.dll
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/refint/leetcode1.dll
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.pdb
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/leetcode1.genruntimeconfig.cache
+/Users/stannyho/Documents/leetcode/cSharp/easy/leetcode1/obj/Debug/net7.0/ref/leetcode1.dll
